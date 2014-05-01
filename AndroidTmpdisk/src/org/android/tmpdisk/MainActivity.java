@@ -13,6 +13,8 @@ import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 
+	RootSetup rs;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +46,10 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	public void btnSetupClick(View v) {
+		rs = RootSetup.getRootSetup(this);
+	}
+	
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
