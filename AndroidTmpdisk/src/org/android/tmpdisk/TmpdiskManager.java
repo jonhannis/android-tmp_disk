@@ -120,7 +120,7 @@ public class TmpdiskManager {
 	}
 	
 	public boolean isMounted() {
-		Process p = getps();
+		Process p = getps(false);
 		DataOutputStream os = new DataOutputStream(p.getOutputStream());;
 		try {
 			os.writeBytes(bb_location + " mount\n");
@@ -146,6 +146,48 @@ public class TmpdiskManager {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public DiskInfo getDiskInfo() {
+		DiskInfo di = new DiskInfo();
+		di.isMounted = isMounted();
+		if (!di.isMounted)
+			return di;
+		Process p = getps(false);
+		DataOutputStream os = new DataOutputStream(p.getOutputStream());;
+		try {
+			os.writeBytes(bb_location + " df -m " + mountlocation + "\n");
+			os.writeBytes("exit\n");
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waitps(p, true);
+		
+		try {
+			BufferedReader bis = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			String line;
+			bis.readLine();
+			line = bis.readLine();
+			if (line != null) {
+				String[] splited = line.split("\\s+");
+				di.size = Integer.parseInt(splited[1]);
+				di.used = Integer.parseInt(splited[2]);
+				di.free = Integer.parseInt(splited[3]);
+			}
+			bis.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return di;
+	}
+	
+	public class DiskInfo {
+		public boolean isMounted = false;
+		public int size=0, used=0, free=0;
+		
 	}
 
 }
