@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnSetup"
         android:onClick="btnSetupClick"
-        android:text="root setup" />
+        android:text="mount/umount" />
        
 
 </LinearLayout>

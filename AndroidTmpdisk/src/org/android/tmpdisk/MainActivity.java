@@ -14,9 +14,11 @@ import android.os.Build;
 public class MainActivity extends ActionBarActivity {
 
 	RootSetup rs;
+	TmpdiskManager tdm;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -24,6 +26,9 @@ public class MainActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		rs = RootSetup.getRootSetup(this);
+		tdm = new TmpdiskManager(rs);
 	}
 
 	@Override
@@ -47,7 +52,10 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void btnSetupClick(View v) {
-		rs = RootSetup.getRootSetup(this);
+		if (tdm.isMounted() == false)
+			tdm.mountTmpdisk();
+		else
+			tdm.umountTmpdisk();
 	}
 	
 	/**
