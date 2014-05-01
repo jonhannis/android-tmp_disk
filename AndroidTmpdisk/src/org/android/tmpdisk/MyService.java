@@ -1,7 +1,5 @@
 package org.android.tmpdisk;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -18,7 +16,6 @@ public class MyService extends Service implements Runnable {
 	private boolean chargestatus;
 	
 	private Handler mHandler;
-	private Thread loadThread;
 	
 	private RootSetup rs;
 	TmpdiskManager tdm;
