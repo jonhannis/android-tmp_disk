@@ -43,8 +43,12 @@ public class MyService extends Service implements Runnable {
 		Log.v(TAG, "onStartCommand: " + startId);
 		if(!(isstarted)) {
 			isstarted = true;
-			chargestatus = isPlugged();
-			mHandler.sendEmptyMessageDelayed(0, 5*1000);
+			if (tdm.isMounted() == false) {
+				mHandler.sendEmptyMessageDelayed(1, 1*1000);
+			} else {
+				chargestatus = isPlugged();
+				mHandler.sendEmptyMessageDelayed(0, 5*1000);
+			}
 		}
 		return START_STICKY;
 	}
@@ -52,13 +56,16 @@ public class MyService extends Service implements Runnable {
 	private void setupHandler() {
 		mHandler = new Handler() {
 			public void handleMessage(Message msg) {
-				boolean newstatus = isPlugged();
-				Log.d(TAG, "charge status: " + chargestatus + " / " + newstatus);
-				if (newstatus == chargestatus) {
-					if(newstatus)
-						tdm.mountTmpdisk();
-					else
-						tdm.umountTmpdisk();
+				if(msg.what == 1) {
+					tdm.mountTmpdisk();
+				} else {
+
+					boolean newstatus = isPlugged();
+					Log.d(TAG, "charge status: " + chargestatus + " / " + newstatus);
+					if (newstatus == chargestatus) {
+						if(!newstatus)
+							tdm.wipeTmpdisk();
+					}
 				}
 				MyService.this.stopSelf();
 			}

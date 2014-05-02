@@ -76,7 +76,9 @@ public class MainActivity extends ActionBarActivity {
 		tdm.umountTmpdisk();
 	}
 	
-	
+	public void btnWipeClick(View v) {
+		tdm.wipeTmpdisk();
+	}
 	
 	/**
 	 * A placeholder fragment containing a simple view.

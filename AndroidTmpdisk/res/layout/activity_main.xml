@@ -26,6 +26,12 @@
         	android:layout_height="wrap_content"
         	android:onClick="btnUmountClick"
     	    android:text="Force umount" />
+		<Button
+        	android:id="@+id/btnWipe"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:onClick="btnWipeClick"
+    	    android:text="Wipe" />
 	</LinearLayout>
 	
     <TextView

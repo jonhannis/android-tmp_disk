@@ -68,6 +68,23 @@ public class TmpdiskManager {
 		Log.v(TAG, "Umounting temp disk completed");
 	}
 	
+	public void wipeTmpdisk() {
+		Log.v(TAG, "Wiping temp disk...");
+		Process p = getps();
+		DataOutputStream os = new DataOutputStream(p.getOutputStream());;
+		try {
+			os.writeBytes(bb_location + " rm -rf " + mountlocation + "/*\n");
+			os.writeBytes("exit\n");
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waitps(p);
+		Log.v(TAG, "Wiping temp disk completed");
+	}
+	
 	private Process getps() {
 		return getps(true);
 	}
