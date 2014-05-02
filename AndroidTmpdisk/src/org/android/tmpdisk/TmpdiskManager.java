@@ -56,6 +56,7 @@ public class TmpdiskManager {
 			os.writeBytes(bb_location + " umount -r " + mountlocation + "\n");
 			os.writeBytes(bb_location + " umount -f " + mountlocation + "\n");
 			os.writeBytes(bb_location + " umount -l " + mountlocation + "\n");
+			os.writeBytes(bb_location + " rm -rf " + mountlocation + "\n");
 			os.writeBytes("exit\n");
 			os.flush();
 			os.close();
