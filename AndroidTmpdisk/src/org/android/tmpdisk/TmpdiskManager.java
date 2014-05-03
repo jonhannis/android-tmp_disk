@@ -30,7 +30,7 @@ public class TmpdiskManager {
 		DataOutputStream os = new DataOutputStream(p.getOutputStream());;
 		try {
 			os.writeBytes(bb_location + " mkdir " + mountlocation + "\n");
-			os.writeBytes(bb_location + " mount -t tmpfs none " + mountlocation + "\n");
+			os.writeBytes(bb_location + " mount -t tmpfs -o size=1m none " + mountlocation + "\n");
 			os.writeBytes(bb_location + " chmod 1777 " + mountlocation + "\n");
 			os.writeBytes("exit\n");
 			os.flush();
@@ -174,7 +174,7 @@ public class TmpdiskManager {
 		Process p = getps(false);
 		DataOutputStream os = new DataOutputStream(p.getOutputStream());;
 		try {
-			os.writeBytes(bb_location + " df -m " + mountlocation + "\n");
+			os.writeBytes(bb_location + " df -k " + mountlocation + "\n");
 			os.writeBytes("exit\n");
 			os.flush();
 			os.close();

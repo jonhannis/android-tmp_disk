@@ -26,9 +26,9 @@ public class MainActivity extends ActionBarActivity {
 				txtStatus.setText("Current status: mounted");
 			else
 				txtStatus.setText("Current status: umounted");
-			txtSize.setText("Disk size: " + di.size + "MB");
-			txtUsed.setText("Used: " + di.used + "MB");
-			txtFree.setText("Free: " + di.free + "MB");
+			txtSize.setText("Disk size: " + di.size + "KB");
+			txtUsed.setText("Used: " + di.used + "KB");
+			txtFree.setText("Free: " + di.free + "KB");
 			mHandler.sendEmptyMessageDelayed(0, 1000);
 		}
 	};

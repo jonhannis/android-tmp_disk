@@ -43,16 +43,16 @@
         android:id="@+id/txtSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Disk size: 0MB" />
+        android:text="Disk size: 0KB" />
     <TextView
         android:id="@+id/txtUsed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text= "Used: 0MB" />
+        android:text= "Used: 0KB" />
     <TextView
         android:id="@+id/txtFree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Free: 0MB" />
+        android:text="Free: 0KB" />
     
 </LinearLayout>
